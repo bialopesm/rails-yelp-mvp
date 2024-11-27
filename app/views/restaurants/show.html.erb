@@ -1,0 +1,25 @@
+<h1><%= @restaurant.name %></h1>
+<p><%= @restaurant.address %></p>
+<p><%= @restaurant.phone_number %></p>
+<p><%= @restaurant.category %></p>
+
+    <p>
+      <%= link_to "Edit", edit_restaurant_path(@restaurant) %>
+    </p>
+
+    <p>
+      <%= link_to "Destroy", restaurant_path(@restaurant), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    </p>
+
+<h2>Reviews</h2>
+<ul>
+  <% @restaurant.reviews.each do |review| %>
+    <li>
+      <p>Rating:</p> <%= review.rating %>/5
+      <p><%= review.content %></p>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Add a Review</h3>
+<%= render "reviews/form", restaurant: @restaurant, review: @review %>
